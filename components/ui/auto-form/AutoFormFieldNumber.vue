@@ -9,7 +9,18 @@ defineOptions({
   inheritAttrs: false,
 })
 
-defineProps<FieldProps>()
+
+//kanoon-custom-section
+const props = defineProps<FieldProps & { modelValue: string | number, defaultValue: string | number }>()
+const emit = defineEmits(['update:modelValue']);
+const passValue = computed({
+  get() {
+    return props.modelValue;
+  },
+  set(value) {
+    emit('update:modelValue', value);
+  },
+});
 </script>
 
 <template>
@@ -20,7 +31,8 @@ defineProps<FieldProps>()
       </AutoFormLabel>
       <FormControl>
         <slot v-bind="slotProps">
-          <Input type="number" v-bind="{ ...slotProps.componentField, ...config?.inputProps }" :disabled="disabled" />
+          <Input type="number" v-model="passValue" :default-value="props.defaultValue"
+            v-bind="{ ...slotProps.componentField, ...config?.inputProps }" :disabled="disabled" />
         </slot>
       </FormControl>
       <FormDescription v-if="config?.description">

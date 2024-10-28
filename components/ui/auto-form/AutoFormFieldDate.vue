@@ -37,7 +37,7 @@ const df = new DateFormatter('en-US', {
                   )"
                 >
                   <CalendarIcon class="mr-2 h-4 w-4" :size="16" />
-                  {{ slotProps.componentField.modelValue ? df.format(slotProps.componentField.modelValue.toDate(getLocalTimeZone())) : "Pick a date" }}
+                  {{ slotProps.componentField.modelValue ? df.format(slotProps.componentField.modelValue.toDate(getLocalTimeZone())) : config?.inputProps?.placeholder }}
                 </Button>
               </PopoverTrigger>
               <PopoverContent class="w-auto p-0">
