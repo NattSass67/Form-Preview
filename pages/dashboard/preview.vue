@@ -1,5 +1,5 @@
 <script setup>
-// import FormRenderer from '~/components/preview/FormRenderer.vue'
+import FormRenderer from '~/components/preview/FormRenderer.vue'
 
 provide('id', ref())
 </script>
