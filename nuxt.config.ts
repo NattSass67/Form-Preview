@@ -24,6 +24,9 @@ export default defineNuxtConfig({
     '/dashboard': {
       redirect: '/dashboard/links',
     },
+    '/preview': {
+      ssr: false,
+    },
   },
 
   hub: {
