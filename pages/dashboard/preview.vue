@@ -6,7 +6,6 @@ provide('id', ref())
 
 <template>
   <main class="space-y-6">
-    <DashboardBreadcrumb title="Analysis" />
-    <!-- <FormRenderer /> -->
+    <FormRenderer />
   </main>
 </template>
