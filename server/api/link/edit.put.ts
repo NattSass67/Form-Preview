@@ -18,6 +18,7 @@ export default eventHandler(async (event) => {
     const newLink = {
       ...existingLink,
       ...link,
+      field_data: link.field_data,
       id: existingLink.id, // don't update id
       createdAt: existingLink.createdAt, // don't update createdAt
       updatedAt: Math.floor(Date.now() / 1000),

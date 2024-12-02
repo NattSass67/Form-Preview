@@ -74,13 +74,22 @@ const formData = reactive({}) // Reactive object for form data
 // Use the route to get the query parameter
 const route = useRoute()
 
-onMounted(() => {
-  // Check if 'data' query parameter exists
-  if (route.query.data) {
+onMounted(async () => {
+  // Check if 'id' query parameter exists
+  if (route.query.id) {
     try {
       // Decode and parse the JSON data from the query parameter
-      const parsedFields = JSON.parse(decodeURIComponent(route.query.data))
+      // Fetch the data from the API
+      console.log('TOKEN', process.env.NUXT_SITE_TOKEN)
+      const res = await fetch(`/api/link/query?slug=${id}`, {
+        headers: {
+          Authorization: `Bearer ${process.env.NUXT_SITE_TOKEN}`,
+        },
+      })
 
+      // Parse the JSON data from the response
+      const parsedFields = await res.json()
+      console.log('parsed', parsedFields)
       // Assign fields and initialize formData with default values
       fields.value = parsedFields
       parsedFields.forEach((field) => {
@@ -106,16 +115,9 @@ function handleSubmit() {
     </h1>
     <form class="space-y-6" @submit.prevent="handleSubmit">
       <CustomInput
-        v-for="field in fields"
-        :id="field.key"
-        :key="field.key"
-        v-model="formData[field.key]"
-        :label="field.label"
-        :type="field.type"
-        :placeholder="field.placeholder"
-        :options="field.enumValues || []"
-        :description="field.description"
-        :required="field.required"
+        v-for="field in fields" :id="field.key" :key="field.key" v-model="formData[field.key]"
+        :label="field.label" :type="field.type" :placeholder="field.placeholder" :options="field.enumValues || []"
+        :description="field.description" :required="field.required"
         :default-value="field.defaultValue ? field.defaultValue : ''"
       />
 
