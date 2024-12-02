@@ -92,7 +92,7 @@ onMounted(async () => {
       console.log('parsed', parsedFields)
       // Assign fields and initialize formData with default values
       fields.value = parsedFields.field_data
-      parsedFields.forEach((field) => {
+      parsedFields.field_data.forEach((field) => {
         formData[field.key] = field.defaultValue || '' // Initialize formData with default values
       })
     }
