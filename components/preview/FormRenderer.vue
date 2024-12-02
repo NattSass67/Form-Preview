@@ -80,10 +80,10 @@ onMounted(async () => {
     try {
       // Decode and parse the JSON data from the query parameter
       // Fetch the data from the API
-      console.log('TOKEN', process.env.NUXT_SITE_TOKEN)
-      const res = await fetch(`/api/link/query?slug=${id}`, {
+      const config = useRuntimeConfig()
+      const res = await fetch(`/api/link/query?slug=${route.query.id}`, {
         headers: {
-          Authorization: `Bearer ${process.env.NUXT_SITE_TOKEN}`,
+          Authorization: `Bearer ${config.public.apiToken}`,
         },
       })
 
@@ -91,7 +91,7 @@ onMounted(async () => {
       const parsedFields = await res.json()
       console.log('parsed', parsedFields)
       // Assign fields and initialize formData with default values
-      fields.value = parsedFields
+      fields.value = parsedFields.field_data
       parsedFields.forEach((field) => {
         formData[field.key] = field.defaultValue || '' // Initialize formData with default values
       })
