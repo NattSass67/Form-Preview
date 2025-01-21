@@ -27,6 +27,9 @@ export default defineNuxtConfig({
     '/preview/**': {
       ssr: false,
     },
+    '/lead/**': {
+      ssr: false,
+    },
   },
 
   hub: {
