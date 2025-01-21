@@ -75,13 +75,12 @@ const formData = reactive({}) // Reactive object for form data
 const route = useRoute()
 
 onMounted(async () => {
-  // Check if 'id' query parameter exists
-  if (route.query.id) {
+  // Check if 'id' parameter exists
+  if (route.params.id) {
     try {
-      // Decode and parse the JSON data from the query parameter
-      // Fetch the data from the API
+      // Fetch the data from the API using the 'id' parameter
       const config = useRuntimeConfig()
-      const res = await fetch(`/api/link/query?slug=${route.query.id}`, {
+      const res = await fetch(`/api/link/query?slug=${route.params.id}`, {
         headers: {
           Authorization: `Bearer ${config.public.apiToken}`,
         },
@@ -97,7 +96,7 @@ onMounted(async () => {
       })
     }
     catch (error) {
-      console.error('Error decoding form data:', error)
+      console.error('Error fetching form data:', error)
     }
   }
 })
