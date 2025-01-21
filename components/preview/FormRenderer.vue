@@ -1,71 +1,78 @@
+<!-- eslint-disable unused-imports/no-unused-vars -->
 <!-- eslint-disable no-alert -->
 <script setup>
 import { reactive } from 'vue'
 import CustomInput from './CustomInput.vue'
 import { useRoute } from '#app'
 // JSON data
-// const fieldsMock = [
-//   {
-//     label: 'Field Name',
-//     key: 'fieldKey589',
-//     type: 'String',
-//     required: false,
-//     description: 'Description',
-//     placeholder: 'Placeholder',
-//     defaultValue: 'string',
-//     format: 'String', // can be either Email, String
-//     validation: {
-//       max: 255,
-//       min: 1,
-//     },
-//   },
-//   {
-//     description: 'Description',
-//     key: 'fieldKey244',
-//     placeholder: 'Placeholder',
-//     label: 'Field Name',
-//     type: 'Number',
-//     required: false,
-//     defaultValue: 1,
-//     validation: {
-//       max: 9999999,
-//       min: 1,
-//     },
-//   },
-//   {
-//     description: 'Description',
-//     key: 'fieldKey388',
-//     placeholder: 'Placeholder',
-//     label: 'Field Name',
-//     type: 'Boolean',
-//     required: false,
-//     defaultValue: true,
-//   },
-//   {
-//     description: 'Description',
-//     key: 'fieldKey862',
-//     placeholder: 'Placeholder',
-//     label: 'Field Name',
-//     type: 'Enum',
-//     required: false,
-//     enumName: 'MyEnum Name',
-//     enumValues: [
-//       {
-//         id: '1729698606633',
-//         label: 'label',
-//         value: 'value',
-//       },
-//     ],
-//   },
-//   {
-//     description: 'Description',
-//     key: 'fieldKey998',
-//     placeholder: 'Placeholder',
-//     label: 'Field Name',
-//     type: 'Date',
-//     required: false,
-//   },
-// ]
+const fieldsMock = [
+  {
+    label: 'Test23',
+    key: 'fieldKey647',
+    type: 'String',
+    required: false,
+    description: 'Description',
+    placeholder: 'Placeholder',
+    defaultValue: 'string',
+    format: 'String',
+    validation: {
+      max: 255,
+      min: 1,
+    },
+  },
+  {
+    description: 'Description',
+    key: 'fieldKey578',
+    placeholder: 'Placeholder',
+    label: 'Field Name555',
+    type: 'Number',
+    required: false,
+    defaultValue: 1,
+    validation: {
+      max: 9999999,
+      min: 1,
+    },
+  },
+  {
+    description: 'Description',
+    key: 'fieldKey179',
+    placeholder: 'Placeholder',
+    label: 'Field Name',
+    type: 'Boolean',
+    required: false,
+    defaultValue: true,
+  },
+  {
+    description: 'Description',
+    key: 'fieldKey974',
+    placeholder: 'Placeholder',
+    label: 'Field Name',
+    type: 'Enum',
+    required: false,
+    enumName: 'MyEnum Name',
+    enumValues: [
+      {
+        id: '1737452960109',
+        label: 'label2',
+        value: 'value',
+      },
+      {
+        id: '1737452980182',
+        label: 'New Label5',
+        value: 'New Value',
+      },
+    ],
+    enumStyle: 'Select',
+  },
+  {
+    description: 'Description',
+    key: 'fieldKey335',
+    placeholder: 'Placeholder',
+    label: 'Field Name',
+    type: 'Date',
+    required: false,
+  },
+]
 
 // State to store the decoded form fields
 const fields = ref([]) // Reactive array for form fields
@@ -118,6 +125,7 @@ function handleSubmit() {
         :label="field.label" :type="field.type" :placeholder="field.placeholder" :options="field.enumValues || []"
         :description="field.description" :required="field.required"
         :default-value="field.defaultValue ? field.defaultValue : ''"
+        :enum-style="field.enumStyle ? field.enumStyle.toLowerCase() : ''"
       />
 
       <Button type="submit">
